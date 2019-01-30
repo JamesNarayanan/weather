@@ -1,0 +1,4 @@
+#scheduleWrapper {
+    display: flex;
+	flex-direction: row;
+}
