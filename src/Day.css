@@ -1,0 +1,24 @@
+#dayWrapper {
+    background-color: cyan;
+    font: 12pt Helvetica, sans-serif;
+    border: 1px solid black;
+    width: 150px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#dow {
+    font-size: 2em;
+}
+
+#temps {
+    display: flex;
+    flex-direction: row;
+}
+
+#low {
+    color: rgb(190, 190, 190);
+}
