@@ -2,7 +2,7 @@
     background-color: cyan;
     font: 12pt Helvetica, sans-serif;
     border: 1px solid black;
-    width: 150px;
+    width: 200px;
     height: 250px;
     display: flex;
     flex-direction: column;
