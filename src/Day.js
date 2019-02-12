@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Skycons from 'react-skycons';
 import './Day.css';
 
 class Day extends Component {
@@ -11,18 +12,22 @@ class Day extends Component {
 
 		var day = this.props.days[this.props.dayNum];
 
-		var precip = day.precipType === undefined ? "Clear" : day.precipType;
-		precip = precip.charAt(0).toUpperCase() + precip.slice(1);
+		var iconName = day.iconName;
+		function replaceAll(str, find, replace) {
+			return str.replace(new RegExp(find, 'g'), replace);
+		}
+		iconName = replaceAll(iconName, "-","_");
+		iconName = iconName.toUpperCase();
 
 		return (
-			<div id="dayWrapper" onClick={()=>this.props.onClick(this.props.dayNum)} style={{backgroundColor: parseInt(this.props.selectedDay) === parseInt(this.props.dayNum) ? "rgba(0,0,0,.2)" : "transparent"}}>
+			<div id="dayWrapper" onClick={()=>this.props.onClick(this.props.dayNum)} style={{backgroundColor: this.props.selectedDay === this.props.dayNum ? "rgba(0,0,0,.2)" : "transparent"}}>
 				<div id="time">{getWeekday(day.time)}</div>
 				<br/>
+				<Skycons height="75px" width="100%" color="white" icon={iconName} autoplay={true}/>
 				<div id="temps">
 					<div id="high">{Math.round(day.high)}°</div> &nbsp;&nbsp; <div id="low">{Math.round(day.low)}°</div>
 				</div>
 				<br/>
-				<div id="precip">{precip}</div>
 			</div>
 		);
 	}

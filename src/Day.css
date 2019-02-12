@@ -1,6 +1,4 @@
 #dayWrapper {
-    /* width: 150px;
-    height: 175px; */
     padding: 10px 15px;
     border: 1px solid black;
     margin: 10px 10px;
@@ -13,14 +11,16 @@
 }
 
 #time {
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 #temps {
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
+    font-size: 1.2em;
 }
 
 #low {
-    color: rgb(140, 140, 140);
+    color: rgb(120, 120, 120);
 }
