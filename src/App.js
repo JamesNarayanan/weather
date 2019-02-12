@@ -10,8 +10,13 @@ class App extends Component {
 
 		this.state = {selectedDay: 0};
 
-		Weather.searchWeather("New York").then(data => {
-			this.setState({days: data});
+		var lat, lon;
+		navigator.geolocation.getCurrentPosition(position => {
+			lat = position.coords.latitude;
+			lon = position.coords.longitude;
+			Weather.searchWeather(lat, lon).then(data => {
+				this.setState({days: data});
+			});
 		});
 
 		this.handleDayClick = this.handleDayClick.bind(this);
