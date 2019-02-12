@@ -1,0 +1,16 @@
+#dayInfoWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 20px;
+}
+
+#dow {
+    font-size: 3em;
+}
+
+#temp {
+    font-size: 5.5em;
+}
+#low {
+    color: rgb(140, 140, 140);
+}

@@ -17,8 +17,11 @@ const Weather = {
 						time: day.time,
 						low: day.apparentTemperatureMin,
 						high: day.apparentTemperatureMax,
+						apparentLow: day.apparentTemperatureLow,
+						apparentHigh: day.apparentTemperatureHigh,
 						precipType: day.precipType,
-						precipProb: day.precipProbability
+						precipProb: day.precipProbability,
+						summary: day.summary
 					};
 				});
 				return days;

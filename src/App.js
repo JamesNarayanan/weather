@@ -26,8 +26,10 @@ class App extends Component {
 		if(this.state.days) {
 			return (
 				<div id="appWrapper">
-					<DayInfo day={this.state.days[this.state.selectedDay]}/>
-					<Schedule days={this.state.days} onDayClick={this.handleDayClick} selectedDay={this.selectedDay}/>
+					<div id="appContainer">
+						<DayInfo day={this.state.days[this.state.selectedDay]}/>
+						<Schedule days={this.state.days} onDayClick={this.handleDayClick} selectedDay={this.selectedDay}/>
+					</div>
 				</div>
 			);
 		} else {return null;}

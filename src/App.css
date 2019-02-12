@@ -5,3 +5,11 @@
 	align-items: center;
 	background-color: rgb(125, 246, 255);
 }
+
+#appContainer {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #aaa;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .05);
+}
