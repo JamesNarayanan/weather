@@ -4,18 +4,15 @@ const apiKey = 'ff07098595399807a08fe4b2ed836a68';
 
 const Weather = {
 	searchWeather(location) {
-		// return fetch(
-		// 	`https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/forecast?q=${location},us&appid=${apiKey}`, {
-		// 	headers: {
-		// 		Authorization: `Bearer ${apiKey}`
-		// 	}
-		// })
+		location = location.replace(" ", "+");
 		return fetch(
-			`api.openweathermap.org/data/2.5/forecast?q=${location},us&appid=${apiKey}`
+			`https://api.openweathermap.org/data/2.5/forecast?q=${location},us&appid=${apiKey}&units=Imperial`
 		).then(response => {
 			return response.json();
 		}).then(jsonResponse => {
 			if(jsonResponse) {
+				console.log(jsonResponse);
+
 				return {
                     city: jsonResponse.city.name,
                     low: jsonResponse.list[0].main.temp_min,
