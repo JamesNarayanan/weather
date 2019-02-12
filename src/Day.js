@@ -13,7 +13,7 @@ class Day extends Component {
 		precip = precip.charAt(0).toUpperCase() + precip.slice(1);
 
 		return (
-			<div id="dayWrapper">
+			<div id="dayWrapper" onClick={this.props.onClick}>
 				<div id="time">{getWeekday(this.props.time)}</div>
 				<br/>
 				<div id="temps">
