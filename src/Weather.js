@@ -21,7 +21,8 @@ const Weather = {
 						apparentHigh: day.apparentTemperatureHigh,
 						precipType: day.precipType,
 						precipProb: day.precipProbability,
-						summary: day.summary
+						summary: day.summary,
+						iconName: day.icon
 					};
 				});
 				return days;

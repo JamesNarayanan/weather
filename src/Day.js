@@ -9,15 +9,17 @@ class Day extends Component {
 			return days[date.getUTCDay()];
 		}
 
-		var precip = this.props.day.precipType === undefined ? "Clear" : this.props.day.precipType;
+		var day = this.props.days[this.props.dayNum];
+
+		var precip = day.precipType === undefined ? "Clear" : day.precipType;
 		precip = precip.charAt(0).toUpperCase() + precip.slice(1);
 
 		return (
-			<div id="dayWrapper" onClick={this.props.onClick}>
-				<div id="time">{getWeekday(this.props.day.time)}</div>
+			<div id="dayWrapper" onClick={()=>this.props.onClick(this.props.dayNum)} style={{backgroundColor: parseInt(this.props.selectedDay) === parseInt(this.props.dayNum) ? "rgba(0,0,0,.2)" : "transparent"}}>
+				<div id="time">{getWeekday(day.time)}</div>
 				<br/>
 				<div id="temps">
-					<div id="high">{Math.round(this.props.day.high)}°</div> &nbsp;&nbsp; <div id="low">{Math.round(this.props.day.low)}°</div>
+					<div id="high">{Math.round(day.high)}°</div> &nbsp;&nbsp; <div id="low">{Math.round(day.low)}°</div>
 				</div>
 				<br/>
 				<div id="precip">{precip}</div>

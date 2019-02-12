@@ -19,7 +19,6 @@ class App extends Component {
 
 	handleDayClick(dayNumber) {
 		this.setState({selectedDay: dayNumber});
-		console.log(dayNumber);
 	}
 
 	render() {
@@ -28,7 +27,7 @@ class App extends Component {
 				<div id="appWrapper">
 					<div id="appContainer">
 						<DayInfo day={this.state.days[this.state.selectedDay]}/>
-						<Schedule days={this.state.days} onDayClick={this.handleDayClick} selectedDay={this.selectedDay}/>
+						<Schedule days={this.state.days} onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay}/>
 					</div>
 				</div>
 			);
