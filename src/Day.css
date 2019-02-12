@@ -1,11 +1,14 @@
 #dayWrapper {
-    font: 12pt Helvetica, sans-serif;
-    width: 200px;
-    height: 250px;
+    /* width: 150px;
+    height: 175px; */
+    padding: 10px 15px;
+    border: 1px solid black;
+    margin: 10px 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font: 10pt Helvetica, sans-serif;
 }
 
 #time {

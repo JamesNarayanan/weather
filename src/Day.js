@@ -3,38 +3,24 @@ import './Day.css';
 
 class Day extends Component {
 	render() {
-		function timeConverter(UNIX_timestamp){
-			var a = new Date(UNIX_timestamp * 1000);
-			var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+		function getWeekday(UNIX_timestamp){
+			var date = new Date(UNIX_timestamp * 1000);
 			var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-			var year = a.getFullYear();
-			var month = months[a.getMonth()];
-			var date = a.getDate();
-			var hour = a.getHours();
-			var min = a.getMinutes();
-			var sec = a.getSeconds();
-			var weekDay = days[a.getUTCDay()];
-			// var time = weekDay + ', ' + date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-			return {
-				weekDay: weekDay,
-				date: date,
-				month: month,
-				year: year,
-				hour: hour,
-				min: min,
-				sec: sec
-			};
+			return days[date.getUTCDay()];
 		}
+
+		var precip = this.props.precipType === undefined ? "Clear" : this.props.precipType;
+		precip = precip.charAt(0).toUpperCase() + precip.slice(1);
 
 		return (
 			<div id="dayWrapper">
-				<div id="time">{timeConverter(this.props.time).weekDay}</div>
+				<div id="time">{getWeekday(this.props.time)}</div>
 				<br/>
 				<div id="temps">
-					<div id="high">{this.props.high}°{this.props.unit}</div> &nbsp;&nbsp; <div id="low">{this.props.low}°{this.props.unit}</div>
+					<div id="high">{Math.round(this.props.high)}°</div> &nbsp;&nbsp; <div id="low">{Math.round(this.props.low)}°</div>
 				</div>
 				<br/>
-				<div id="precip">{this.props.precipProb*100}% chance of {this.props.precipType}</div> 
+				<div id="precip">{precip}</div>
 			</div>
 		);
 	}
