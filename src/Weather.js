@@ -1,4 +1,4 @@
-const apiKey = 'ff07098595399807a08fe4b2ed836a68';
+const apiKey = 'f22bbd8641b71b57cc2c0de39a62ff4d';
 
 // https://openweathermap.org/forecast5
 
@@ -6,21 +6,20 @@ const Weather = {
 	searchWeather(location) {
 		location = location.replace(" ", "+");
 		return fetch(
-			`https://api.openweathermap.org/data/2.5/forecast?q=${location},us&appid=${apiKey}&units=Imperial`
+			`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${apiKey}/40.638378,-74.450897`
 		).then(response => {
 			return response.json();
 		}).then(jsonResponse => {
 			if(jsonResponse) {
-				console.log(jsonResponse);
-
-				return {
-                    city: jsonResponse.city.name,
-                    low: jsonResponse.list[0].main.temp_min,
-                    high: jsonResponse.list[0].main.temp_max,
-                    humidity: jsonResponse.list[0].main.humidity,
-					windSpeed: jsonResponse.list[0].wind.speed,
-					time: jsonResponse.list[0].dt
-                };
+				console.log(jsonResponse.daily);
+				var days = jsonResponse.daily.data.map(day => {
+					return {
+						time: day.time,
+						low: day.apparentTemperatureMin,
+						high: day.apparentTemperatureMax
+					};
+				});
+				return days;
 			}
 		});
 	}

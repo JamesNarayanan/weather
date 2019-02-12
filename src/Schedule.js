@@ -7,43 +7,24 @@ class Schedule extends Component {
 	constructor(props) {
 		super(props)
 
-		this.state = {};
-
-		function timeConverter(UNIX_timestamp){
-			var a = new Date(UNIX_timestamp * 1000);
-			var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-			var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-			var year = a.getFullYear();
-			var month = months[a.getMonth()];
-			var date = a.getDate();
-			var hour = a.getHours();
-			var min = a.getMinutes();
-			var sec = a.getSeconds();
-			var weekDay = days[a.getUTCDay()];
-			var time = weekDay + ', ' + date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-			return time;
-		}
+		var filler = [];
+		for(var i = 0; i<8; i++)
+			filler.push({});
+		this.state = {days: filler};
 
 		Weather.searchWeather("New York").then(data => {
-			this.setState({
-				city: data.city,
-				low: data.low,
-				high: data.high,
-				humidity: data.humidity,
-				windSpeed: data.windSpeed,
-				time: timeConverter(data.time)
-			});
+			this.setState({days: data});
 		});
 	}
 
 	render() {
 		return (
 			<div id="scheduleWrapper">
-				<Day dow={this.state.time} low={this.state.low} high={this.state.high} unit="F" precip="rain"/>
-				<Day dow="Tuesday" low="50" high="60" unit="F" precip="rain"/>
-				<Day dow="Wednesday" low="50" high="60" unit="F" precip="rain"/>
-				<Day dow="Thursday" low="50" high="60" unit="F" precip="rain"/>
-				<Day dow="Friday" low="50" high="60" unit="F" precip="rain"/>
+				<Day time={this.state.days[0].time} low={this.state.days[0].low} high={this.state.days[0].high} unit="F" precip="rain"/>
+				<Day time={this.state.days[1].time} low={this.state.days[1].low} high={this.state.days[1].high} unit="F" precip="rain"/>
+				<Day time={this.state.days[2].time} low={this.state.days[2].low} high={this.state.days[2].high} unit="F" precip="rain"/>
+				<Day time={this.state.days[3].time} low={this.state.days[3].low} high={this.state.days[3].high} unit="F" precip="rain"/>
+				<Day time={this.state.days[4].time} low={this.state.days[4].low} high={this.state.days[4].high} unit="F" precip="rain"/>
 			</div>
 		);
 	}
