@@ -16,7 +16,9 @@ const Weather = {
 					return {
 						time: day.time,
 						low: day.apparentTemperatureMin,
-						high: day.apparentTemperatureMax
+						high: day.apparentTemperatureMax,
+						precipType: day.precipType,
+						precipProb: day.precipProbability
 					};
 				});
 				return days;

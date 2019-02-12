@@ -1,7 +1,5 @@
 #dayWrapper {
-    background-color: cyan;
     font: 12pt Helvetica, sans-serif;
-    border: 1px solid black;
     width: 200px;
     height: 250px;
     display: flex;
@@ -20,5 +18,5 @@
 }
 
 #low {
-    color: rgb(190, 190, 190);
+    color: rgb(140, 140, 140);
 }

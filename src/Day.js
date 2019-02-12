@@ -34,7 +34,7 @@ class Day extends Component {
 					<div id="high">{this.props.high}°{this.props.unit}</div> &nbsp;&nbsp; <div id="low">{this.props.low}°{this.props.unit}</div>
 				</div>
 				<br/>
-				<div id="precip">{this.props.precip}</div> 
+				<div id="precip">{this.props.precipProb*100}% chance of {this.props.precipType}</div> 
 			</div>
 		);
 	}
