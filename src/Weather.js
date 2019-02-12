@@ -18,7 +18,8 @@ const Weather = {
                     low: jsonResponse.list[0].main.temp_min,
                     high: jsonResponse.list[0].main.temp_max,
                     humidity: jsonResponse.list[0].main.humidity,
-                    windSpeed: jsonResponse.list[0].wind.speed
+					windSpeed: jsonResponse.list[0].wind.speed,
+					time: jsonResponse.list[0].dt
                 };
 			}
 		});
