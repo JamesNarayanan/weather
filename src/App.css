@@ -1,9 +1,12 @@
+body {
+	background-color: rgb(125, 246, 255);
+}
+
 #appWrapper {
 	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgb(125, 246, 255);
 }
 
 #appContainer {
@@ -12,4 +15,14 @@
 	border: 1px solid #aaa;
     border-radius: 10px;
     background: rgba(0, 0, 0, .05);
+}
+
+#loadingWrapper {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#loading {
+	font-size: 5em;
 }

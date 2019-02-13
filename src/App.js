@@ -10,6 +10,16 @@ class App extends Component {
 
 		this.state = {selectedDay: 0};
 
+		var loading = setInterval(function() {
+			let dots = document.getElementById("dots").innerHTML;
+			if(dots.length >= 3) {
+				document.getElementById("dots").innerHTML = "";
+			}
+			else {
+				document.getElementById("dots").innerHTML = dots + ".";
+			}
+		}, 200);
+
 		var lat, lon;
 		navigator.geolocation.getCurrentPosition(position => {
 			lat = position.coords.latitude;
@@ -17,6 +27,7 @@ class App extends Component {
 			Weather.searchWeather(lat, lon).then(data => {
 				this.setState({days: data});
 			});
+			clearInterval(loading);
 		});
 
 		this.handleDayClick = this.handleDayClick.bind(this);
@@ -36,7 +47,13 @@ class App extends Component {
 					</div>
 				</div>
 			);
-		} else {return null;}
+		} else {
+			return (
+				<div id="loadingWrapper">
+					<div id="loading">Loading<span id="dots"></span></div>
+				</div>
+			);
+		}
 	}
 }
 
