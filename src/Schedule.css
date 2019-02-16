@@ -1,7 +1,4 @@
 #scheduleWrapper {
     display: flex;
     flex-direction: row;
-    /* border: 1px solid #aaa;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, .05); */
 }
