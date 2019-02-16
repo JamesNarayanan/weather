@@ -11,9 +11,18 @@ class DayInfo extends Component {
 		
 		return (
 			<div id="dayInfoWrapper">
-				<div id="dow">{getWeekday(this.props.day.time)}</div>
-				<div id="temp">{Math.round((this.props.day.apparentHigh + this.props.day.apparentLow) / 2)}°</div>
-				<div id="summary">{this.props.day.summary}</div>
+				<div id="left">
+					<div id="dow">{getWeekday(this.props.day.time)}</div>
+					<div id="precipType">{this.props.day.precipType}</div>
+					<div id="temp">{Math.round((this.props.day.apparentHigh + this.props.day.apparentLow) / 2)}°</div>
+					<div id="summary">{this.props.day.summary}</div>
+				</div>
+				<div id="right">
+					<div>Precipitation: {Math.round(this.props.day.precipProb*100)}%</div>
+					<div>Humidity: {Math.round(this.props.day.humidity*100)}%</div>
+					<div>Wind Speed: {this.props.day.windSpeed} mph</div>
+				</div>
+				
 			</div>
 		);
 	}

@@ -20,6 +20,8 @@ const Weather = {
 						apparentHigh: day.apparentTemperatureHigh,
 						precipType: day.precipType,
 						precipProb: day.precipProbability,
+						humidity: day.humidity,
+						windSpeed: day.windSpeed,
 						summary: day.summary,
 						iconName: day.icon
 					};
