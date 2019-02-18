@@ -28,7 +28,13 @@ class App extends Component {
 			return;
 		this.setState({haveLocation: true});
 		Weather.searchWeather(lat, lon).then(data => {
-			this.setState({days: data});
+			if(data == null) {
+				this.setState({haveLocation: false});
+				document.getElementById("console").style.display = "block";
+				document.getElementById("console").innerHTML = "Invalid Location";
+			}
+			else
+				this.setState({days: data});
 		});
 	}
 
@@ -49,6 +55,7 @@ class App extends Component {
 		if(!this.state.haveLocation) {
 			return (
 				<div id="getLocWrapper" className="wrapper">
+					<div id="console"></div>
 					<button onClick={this.getCurrentLocation}>Get Current Location</button>
 					<div style={{margin: "20px"}}>Or</div>
 					<div id="otherLoc">

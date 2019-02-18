@@ -10,6 +10,9 @@ const Weather = {
 			return response.json();
 		}).then(jsonResponse => {
 			if(jsonResponse) {
+				if(jsonResponse.daily === undefined) {
+					return null;
+				}
 				console.log(jsonResponse.daily);
 				var days = jsonResponse.daily.data.map(day => {
 					return {
