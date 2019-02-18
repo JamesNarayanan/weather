@@ -2,27 +2,30 @@ body {
 	background-color: rgb(125, 246, 255);
 }
 
-#appWrapper {
+.wrapper {
 	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 }
 
 #appContainer {
 	display: flex;
 	flex-direction: column;
-	border: 1px solid #aaa;
+	border: 2px solid #aaa;
     border-radius: 10px;
     background: rgba(0, 0, 0, .05);
 }
 
-#loadingWrapper {
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+#getLocWrapper {
+	font-size: 2.5em;
 }
-#loading {
-	font-size: 5em;
+
+#getCurLocBtn {
+	padding: 10px;
+	border: 2px solid #aaa;
+	border-radius: 2px;
+	margin-bottom: 20px;
+	background: rgba(0, 0, 0, .05);
 }
