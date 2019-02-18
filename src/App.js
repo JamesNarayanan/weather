@@ -9,12 +9,38 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {selectedDay: 0, haveLocation: false, lat: '', lon: ''};
-
 		this.handleDayClick = this.handleDayClick.bind(this);
 		this.getLocation = this.getLocation.bind(this);
 		this.getCurrentLocation = this.getCurrentLocation.bind(this);
 		this.handleKeyPress = this.handleKeyPress.bind(this);
+
+		function getCookie(cname) {
+			var name = cname + "=";
+			var decodedCookie = decodeURIComponent(document.cookie);
+			var ca = decodedCookie.split(';');
+			for(var i = 0; i <ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) === ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) === 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
+
+		var lat = getCookie("lat");
+		var lon = getCookie("lon");
+
+		console.log(lat, lon);
+
+		if(lat && lon) {
+			this.state = {selectedDay: 0, haveLocation: true, lat: lat, lon: lon};
+			this.getLocation();
+		}
+		else
+			this.state = {selectedDay: 0, haveLocation: false, lat: '', lon: ''};
 	}
 
 	handleDayClick(dayNumber) {
@@ -33,8 +59,11 @@ class App extends Component {
 				document.getElementById("console").style.display = "block";
 				document.getElementById("console").innerHTML = "Invalid Location";
 			}
-			else
+			else {
 				this.setState({days: data});
+				document.cookie = "lat=" + this.state.lat;
+				document.cookie = "lon=" + this.state.lon;
+			}
 		});
 	}
 
