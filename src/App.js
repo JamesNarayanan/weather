@@ -9,7 +9,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {selectedDay: 0, haveLocation: false};
+		this.state = {selectedDay: 0, haveLocation: false, lat: '', lon: ''};
 
 		this.handleDayClick = this.handleDayClick.bind(this);
 		this.getLocation = this.getLocation.bind(this);
@@ -20,7 +20,11 @@ class App extends Component {
 		this.setState({selectedDay: dayNumber});
 	}
 
-	getLocation(lat, lon) {
+	getLocation() {
+		var lat = this.state.lat;
+		var lon = this.state.lon;
+		if(!lat || !lon)
+			return;
 		this.setState({haveLocation: true});
 		Weather.searchWeather(lat, lon).then(data => {
 			this.setState({days: data});
@@ -28,14 +32,9 @@ class App extends Component {
 	}
 
 	getCurrentLocation() {
-		this.setState({haveLocation: true});
-		var lat, lon;
 		navigator.geolocation.getCurrentPosition(position => {
-			lat = position.coords.latitude;
-			lon = position.coords.longitude;
-			Weather.searchWeather(lat, lon).then(data => {
-				this.setState({days: data});
-			});
+			this.setState({lat: position.coords.latitude, lon: position.coords.longitude});
+			this.getLocation();
 		});
 	}
 
@@ -43,7 +42,16 @@ class App extends Component {
 		if(!this.state.haveLocation) {
 			return (
 				<div id="getLocWrapper" className="wrapper">
-					<div onClick={this.getCurrentLocation} id="getCurLocBtn">Get Current Location</div>
+					<div onClick={this.getCurrentLocation} className="button">Get Current Location</div>
+					<div style={{margin: "20px"}}>Or</div>
+					<div id="otherLoc">
+						<div>Enter a location</div>
+						<div>
+							<input placeholder="Latitude" type="number" value={this.state.lat} onChange={event => this.setState({lat: event.target.value})}></input>
+							<input placeholder="Longitude" type="number" value={this.state.lon} onChange={event => this.setState({lon: event.target.value})}></input>
+						</div>
+						<div onClick={this.getLocation} className="button" style={{marginTop: "10px"}}>Submit</div>
+					</div>
 				</div>
 			);
 		} else if(this.state.days) {
