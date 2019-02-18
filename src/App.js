@@ -3,22 +3,13 @@ import './App.css';
 import Schedule from './Schedule';
 import DayInfo from './DayInfo';
 import Weather from './Weather';
+import Loading from './Loading';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {selectedDay: 0};
-
-		var loading = setInterval(function() {
-			let dots = document.getElementById("dots").innerHTML;
-			if(dots.length >= 3) {
-				document.getElementById("dots").innerHTML = "";
-			}
-			else {
-				document.getElementById("dots").innerHTML = dots + ".";
-			}
-		}, 200);
 
 		var lat, lon;
 		navigator.geolocation.getCurrentPosition(position => {
@@ -27,7 +18,6 @@ class App extends Component {
 			Weather.searchWeather(lat, lon).then(data => {
 				this.setState({days: data});
 			});
-			clearInterval(loading);
 		});
 
 		this.handleDayClick = this.handleDayClick.bind(this);
@@ -50,7 +40,7 @@ class App extends Component {
 		} else {
 			return (
 				<div id="loadingWrapper">
-					<div id="loading">Loading<span id="dots"></span></div>
+					<Loading/>
 				</div>
 			);
 		}
