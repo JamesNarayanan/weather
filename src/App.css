@@ -23,24 +23,46 @@ body {
 }
 
 #otherLoc {
+	min-width: 30%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 }
 
-.button, #otherLoc, #getLocWrapper input {
+button, #otherLoc, #getLocWrapper input {
 	padding: 5px 10px;
 	border: 2px solid #aaa;
 	border-radius: 2px;
 	background: rgba(0, 0, 0, .05);
 }
 
-.button {
+button {
+	font-size: 1em;
 	cursor: pointer;
+	transition: .2s background;
+}
+button:hover {
+	background: rgba(0, 0, 0, .1);
+}
+button:focus {
+	border: none;
+	outline: 2px solid white;
 }
 
-#getLocWrapper input {
+#inputWrapper {
+	width: 100%;
+	margin: 10px auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+#inputWrapper input {
+	width: 40%;
 	font-size: .5em;
-	margin-right: 10px;
+	/* margin-right: 10px; */
+}
+#inputWrapper input:focus {
+	outline: 2px solid white;
 }
