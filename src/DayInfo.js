@@ -13,7 +13,7 @@ class DayInfo extends Component {
 			<div id="dayInfoWrapper">
 				<div id="left">
 					<div id="dow">{getWeekday(this.props.day.time)}</div>
-					<div id="precipType">{this.props.day.precipType}</div>
+					<div id="precipType">{this.props.day.precipProb >= .3 ? this.props.day.precipType : ""}</div>
 					<div id="temp">{Math.round((this.props.day.apparentHigh + this.props.day.apparentLow) / 2)}°</div>
 					<div id="summary">{this.props.day.summary}</div>
 				</div>
