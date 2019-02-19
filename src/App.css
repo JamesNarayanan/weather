@@ -10,10 +10,10 @@ body {
 	flex-direction: column;
 }
 
-#appContainer {
+#scheduleContainer {
 	display: flex;
 	flex-direction: column;
-	border: 2px solid #aaa;
+	border: 1px solid black;
     border-radius: 10px;
     background: rgba(0, 0, 0, .05);
 }

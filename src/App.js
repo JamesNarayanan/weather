@@ -4,12 +4,14 @@ import Schedule from './Schedule';
 import DayInfo from './DayInfo';
 import Weather from './Weather';
 import Loading from './Loading';
+import Settings from './Settings';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 
 		this.handleDayClick = this.handleDayClick.bind(this);
+		this.handleTempClick = this.handleTempClick.bind(this);
 		this.getLocation = this.getLocation.bind(this);
 		this.getCurrentLocation = this.getCurrentLocation.bind(this);
 		this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -33,18 +35,20 @@ class App extends Component {
 		var lat = getCookie("lat");
 		var lon = getCookie("lon");
 
-		console.log(lat, lon);
-
 		if(lat && lon) {
-			this.state = {selectedDay: 0, haveLocation: true, lat: lat, lon: lon};
+			this.state = {selectedDay: 0, unit: "im", haveLocation: true, lat: lat, lon: lon};
 			this.getLocation();
 		}
 		else
-			this.state = {selectedDay: 0, haveLocation: false, lat: '', lon: ''};
+			this.state = {selectedDay: 0, unit: "im", haveLocation: false, lat: '', lon: ''};
 	}
 
 	handleDayClick(dayNumber) {
 		this.setState({selectedDay: dayNumber});
+	}
+
+	handleTempClick(choice) {
+		this.setState({unit: choice === "F" ? "im" : "si"});
 	}
 
 	getLocation() {
@@ -100,9 +104,10 @@ class App extends Component {
 		} else if(this.state.days) {
 			return (
 				<div className="wrapper">
-					<div id="appContainer">
-						<DayInfo day={this.state.days[this.state.selectedDay]}/>
-						<Schedule days={this.state.days} onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay}/>
+					<Settings onTempClick={this.handleTempClick} unit={this.state.unit}/>
+					<div id="scheduleContainer">
+						<DayInfo day={this.state.days[this.state.selectedDay]} unit={this.state.unit}/>
+						<Schedule days={this.state.days} onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay} unit={this.state.unit}/>
 					</div>
 				</div>
 			);
