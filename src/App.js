@@ -35,12 +35,17 @@ class App extends Component {
 		var lat = getCookie("lat");
 		var lon = getCookie("lon");
 
+		var unit = getCookie("unit");
+		if(unit === "")
+			unit = "im";
+		console.log(unit);
+
 		if(lat && lon) {
-			this.state = {selectedDay: 0, unit: "im", haveLocation: true, lat: lat, lon: lon};
+			this.state = {selectedDay: 0, unit: unit, haveLocation: true, lat: lat, lon: lon};
 			this.getLocation();
 		}
 		else
-			this.state = {selectedDay: 0, unit: "im", haveLocation: false, lat: '', lon: ''};
+			this.state = {selectedDay: 0, unit: unit, haveLocation: false, lat: '', lon: ''};
 	}
 
 	handleDayClick(dayNumber) {
@@ -49,6 +54,7 @@ class App extends Component {
 
 	handleTempClick(choice) {
 		this.setState({unit: choice === "F" ? "im" : "si"});
+		document.cookie = "unit=" + (choice === "F" ? "im" : "si");
 	}
 
 	getLocation() {
