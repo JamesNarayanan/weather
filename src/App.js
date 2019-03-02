@@ -91,6 +91,14 @@ class App extends Component {
 	}
 
 	render() {
+		function DarkSkyLogo(props) {
+			return (
+				<a href="https://darksky.net/poweredby/" target="_blank" rel="noopener noreferrer">
+					<img src="darkSky.png" alt="Dark Sky Logo" id="darkSkyLogo"></img>
+				</a>
+			);
+		}
+
 		if(!this.state.haveLocation) {
 			return (
 				<div id="getLocWrapper" className="wrapper">
@@ -105,6 +113,7 @@ class App extends Component {
 						</div>
 						<button onClick={this.getLocation} style={{marginTop: "10px"}}>Submit</button>
 					</div>
+					<DarkSkyLogo />
 				</div>
 			);
 		} else if(this.state.days) {
@@ -115,6 +124,7 @@ class App extends Component {
 						<DayInfo day={this.state.days[this.state.selectedDay]} unit={this.state.unit}/>
 						<Schedule days={this.state.days} onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay} unit={this.state.unit}/>
 					</div>
+					<DarkSkyLogo />
 				</div>
 			);
 		} else {
