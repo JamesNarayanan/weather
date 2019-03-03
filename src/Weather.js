@@ -23,6 +23,7 @@ const Weather = {
 						apparentHigh: day.apparentTemperatureHigh,
 						precipType: day.precipType,
 						precipProb: day.precipProbability,
+						precipAccum: day.precipAccumulation,
 						humidity: day.humidity,
 						windSpeed: day.windSpeed,
 						summary: day.summary,

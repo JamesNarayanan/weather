@@ -38,7 +38,6 @@ class App extends Component {
 		var unit = getCookie("unit");
 		if(unit === "")
 			unit = "im";
-		console.log(unit);
 
 		if(lat && lon) {
 			this.state = {selectedDay: 0, unit: unit, haveLocation: true, lat: lat, lon: lon};
