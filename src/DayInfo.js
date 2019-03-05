@@ -13,6 +13,7 @@ class DayInfo extends Component {
 		var windSpeed = this.props.day.windSpeed;
 		var windSpeedUnit = "m/h";
 
+		// var precipAccum = this.props.day.precipAccum ? this.props.day.precipAccum : 0;
 		var precipAccum = this.props.day.precipAccum;
 		var measurementUnit = "in";
 
@@ -25,8 +26,6 @@ class DayInfo extends Component {
 			precipAccum *= 2.54;
 			measurementUnit = "cm";
 		}
-
-		precipAccum = precipAccum.toFixed(2);
 		
 		return (
 			<div id="dayInfoWrapper">
@@ -38,7 +37,7 @@ class DayInfo extends Component {
 				</div>
 				<div id="right">
 					<div>Precipitation: {Math.round(this.props.day.precipProb*100)}%</div>
-					{this.props.day.precipType === "snow" && this.props.day.precipProb >= .3 ? <div>Accumulation: {`${precipAccum} ${measurementUnit}`}</div> : ""}
+					{precipAccum && this.props.day.precipType === "snow" && this.props.day.precipProb >= .3 ? <div>Accumulation: {`${precipAccum.toFixed(2)} ${measurementUnit}`}</div> : ""}
 					<div>Humidity: {Math.round(this.props.day.humidity*100)}%</div>
 					<div>Wind Speed: {windSpeed.toFixed(2)} {windSpeedUnit}</div>
 				</div>
