@@ -2,4 +2,5 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    min-width: 610px; /* Stops the days from wrapping more than once */
 }

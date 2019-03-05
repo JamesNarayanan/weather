@@ -10,9 +10,12 @@
     flex-direction: column;
 }
 
+#left {
+    width: 60%;
+}
 #right {
+    width: 40%;
     margin-top: 25px;
-    margin-right: 100px;
     font-size: 2em;
 }
 
