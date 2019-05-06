@@ -53,12 +53,12 @@ button {
 	cursor: pointer;
 	transition: .2s background;
 }
-button:hover {
-	background: rgba(0, 0, 0, .1);
+
+.btn {
+	background-color: rgba(0, 0, 0, .05);
 }
-button:focus {
-	border: none;
-	outline: 2px solid white;
+.btn:hover {
+	background: rgba(0, 0, 0, .15);
 }
 
 #inputWrapper {
@@ -80,10 +80,9 @@ button:focus {
 
 #darkSkyLogo {
 	position: absolute;
-	top: 20px;
-	right: 20px;
+	top: 0px;
+	right: 0px;
 	height: 50px;
 	width: auto;
-	border-radius: 5px;
 	background-color: black;
 }
