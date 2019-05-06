@@ -27,15 +27,15 @@ class Day extends Component {
 			low = (low - 32) * (5/9);
 		}
 
+		// Also change formatting to be a container with rows and columns
 		return (
-			<div id="dayWrapper" onClick={()=>this.props.onClick(this.props.dayNum)} style={{backgroundColor: this.props.selectedDay === this.props.dayNum ? "rgba(0,0,0,.2)" : "transparent"}}>
-				<div id="time">{getWeekday(day.time)}</div>
+			<div id="dayWrapper" className="col m-2 px-0 py-2 d-flex flex-column align-items-center rounded" onClick={()=>this.props.onClick(this.props.dayNum)} style={{backgroundColor: this.props.selectedDay === this.props.dayNum ? "rgba(0,0,0,.2)" : ""}}>
+				<div className="h5 mb-0">{getWeekday(day.time)}</div>
 				<br/>
-				<Skycons height="75px" width="100%" color="white" icon={iconName} autoplay={true}/>
-				<div id="temps">
-					<div id="high">{Math.round(high)}°</div> &nbsp;&nbsp; <div id="low">{Math.round(low)}°</div>
+				<Skycons height="40px" width="100%" color="white" icon={iconName} autoplay={true}/>
+				<div className="mt-2 mb-0 d-flex h6">
+					<div>{Math.round(high)}°</div> &nbsp;&nbsp; <div className="text-muted">{Math.round(low)}°</div>
 				</div>
-				<br/>
 			</div>
 		);
 	}

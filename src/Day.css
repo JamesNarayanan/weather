@@ -1,27 +1,8 @@
 #dayWrapper {
-    padding: 10px 15px;
-    border: 1px solid black;
-    margin: 10px 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-    align-items: center;
     font: 10pt Helvetica, sans-serif;
     cursor: pointer;
+    transition: .2s ease;
 }
-
-#time {
-    font-size: 1.5em;
-}
-
-#temps {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    font-size: 1.2em;
-}
-
-#low {
-    color: rgb(120, 120, 120);
+#dayWrapper:hover {
+    background-color: rgba(0,0,0,.05);
 }
