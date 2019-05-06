@@ -119,7 +119,7 @@ class App extends Component {
 			return (
 				<div className="container-fluid p-3 d-flex flex-column justify-content-center align-items-center">
 					<Settings onTempClick={this.handleTempClick} unit={this.state.unit}/>
-					<div id="scheduleContainer">
+					<div className="container h-auto mt-4 p-3 d-flex flex-column border border-dark rounded">
 						<DayInfo day={this.state.days[this.state.selectedDay]} unit={this.state.unit}/>
 						<Schedule days={this.state.days} onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay} unit={this.state.unit}/>
 					</div>

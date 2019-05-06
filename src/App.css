@@ -9,16 +9,6 @@ body {
 	flex-direction: column;
 }
 
-#scheduleContainer { /* Contains Day info and the schedule */
-	margin-top: 50px;
-	height: auto;
-	display: flex;
-	flex-direction: column;
-	border: 1px solid black;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, .05);
-}
-
 #getLocWrapper {
 	font-size: 2.5em;
 }

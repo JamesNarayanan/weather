@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Schedule.css';
 import Day from './Day';
 
 class Schedule extends Component {
@@ -10,7 +9,7 @@ class Schedule extends Component {
 		};
 		
 		return (
-			<div id="scheduleWrapper">
+			<div className="row justify-content-center">
 				{days}
 			</div>
 		);
