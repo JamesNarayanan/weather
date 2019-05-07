@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Schedule from './Schedule';
+import Hours from './Hours';
 import DayInfo from './DayInfo';
 import Weather from './Weather';
 import Loading from './Loading';
@@ -119,9 +120,16 @@ class App extends Component {
 			return (
 				<div className="container-fluid p-3 d-flex flex-column justify-content-center align-items-center">
 					<Settings onTempClick={this.handleTempClick} unit={this.state.unit}/>
+
 					<div className="container h-auto mt-4 p-3 d-flex flex-column border border-dark rounded">
+						<div className="display-3 text-center">Weekly</div>
 						<DayInfo day={this.state.days[this.state.selectedDay]} unit={this.state.unit}/>
 						<Schedule days={this.state.days} onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay} unit={this.state.unit}/>
+					</div>
+
+					<div className="container h-auto mt-4 border border-dark rounded">
+						<div className="display-3 text-center">Hourly</div>
+						<Hours hours={this.state.hours} unit={this.state.unit}/>
 					</div>
 					<DarkSkyLogo/>
 				</div>
