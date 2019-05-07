@@ -13,24 +13,8 @@ const Weather = {
 				if(jsonResponse.daily === undefined) {
 					return null;
 				}
-				console.log(jsonResponse.daily);
-				var days = jsonResponse.daily.data.map(day => {
-					return {
-						time: day.time,
-						low: day.apparentTemperatureMin,
-						high: day.apparentTemperatureMax,
-						apparentLow: day.apparentTemperatureLow,
-						apparentHigh: day.apparentTemperatureHigh,
-						precipType: day.precipType,
-						precipProb: day.precipProbability,
-						precipAccum: day.precipAccumulation,
-						humidity: day.humidity,
-						windSpeed: day.windSpeed,
-						summary: day.summary,
-						iconName: day.icon
-					};
-				});
-				return days;
+				console.log(jsonResponse);
+				return {days: jsonResponse.daily, hours: jsonResponse.hourly, minutes: jsonResponse.minutely};
 			}
 		});
 	}

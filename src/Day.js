@@ -12,15 +12,15 @@ class Day extends Component {
 
 		var day = this.props.days[this.props.dayNum];
 
-		var iconName = day.iconName;
+		var iconName = day.icon;
 		function replaceAll(str, find, replace) {
 			return str.replace(new RegExp(find, 'g'), replace);
 		}
 		iconName = replaceAll(iconName, "-","_");
 		iconName = iconName.toUpperCase();
 
-		var high = day.high;
-		var low = day.low;
+		var high = day.apparentTemperatureMax;
+		var low = day.apparentTemperatureMin;
 
 		if(this.props.unit === "si") {
 			high = (high - 32) * (5/9);

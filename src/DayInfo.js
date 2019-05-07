@@ -25,12 +25,12 @@ class DayInfo extends Component {
 			return days[date.getUTCDay()];
 		}
 
-		var temp = (this.props.day.apparentHigh + this.props.day.apparentLow) / 2;
+		var temp = (this.props.day.apparentTemperatureHigh + this.props.day.apparentTemperatureLow) / 2;
 		var windSpeed = this.props.day.windSpeed;
 		var windSpeedUnit = "m/h";
 
-		// var precipAccum = this.props.day.precipAccum ? this.props.day.precipAccum : 0;
-		var precipAccum = this.props.day.precipAccum;
+		// var precipAccumulation = this.props.day.precipAccumulation ? this.props.day.precipAccumulation : 0;
+		var precipAccumulation = this.props.day.precipAccumulation;
 		var measurementUnit = "in";
 
 		if(this.props.unit === "si") {
@@ -39,7 +39,7 @@ class DayInfo extends Component {
 			windSpeed *= 2.237;
 			windSpeedUnit = "m/s"
 
-			precipAccum *= 2.54;
+			precipAccumulation *= 2.54;
 			measurementUnit = "cm";
 		}
 		var textSizing = "h1";
@@ -51,13 +51,13 @@ class DayInfo extends Component {
 			<div className="row mx-2 mb-3">
 				<div className="col-12 col-md-6 mb-3 mb-md-0 d-flex flex-column text-center text-md-left">
 					<div className="display-4">{getWeekday(this.props.day.time)}</div>
-					<div className="h3 text-capitalize">{this.props.day.precipProb >= .3 ? this.props.day.precipType : ""}</div>
+					<div className="h3 text-capitalize">{this.props.day.precipProbability >= .3 ? this.props.day.precipType : ""}</div>
 					<div className="display-1 mt-n3 mb-n2">{Math.round(temp)}°</div>
 					<div>{this.props.day.summary}</div>
 				</div>
 				<div className={`col-12 col-md-6 ${textSizing} font-weight-normal d-flex flex-column text-center text-md-left`}>
-					<div>Precipitation: {Math.round(this.props.day.precipProb*100)}%</div>
-					{precipAccum && this.props.day.precipType === "snow" && this.props.day.precipProb >= .3 ? <div>Accumulation: {`${precipAccum.toFixed(2)} ${measurementUnit}`}</div> : ""}
+					<div>Precipitation: {Math.round(this.props.day.precipProbability*100)}%</div>
+					{precipAccumulation && this.props.day.precipType === "snow" && this.props.day.precipProbability >= .3 ? <div>Accumulation: {`${precipAccumulation.toFixed(2)} ${measurementUnit}`}</div> : ""}
 					<div>Humidity: {Math.round(this.props.day.humidity*100)}%</div>
 					<div>Wind Speed: {windSpeed.toFixed(2)} {windSpeedUnit}</div>
 				</div>

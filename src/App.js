@@ -69,7 +69,7 @@ class App extends Component {
 				document.getElementById("console").innerHTML = "Invalid Location";
 			}
 			else {
-				this.setState({days: data});
+				this.setState({days: data.days.data, hours: data.hours.data, minutes: data.minutes.data});
 				document.cookie = "lat=" + this.state.lat;
 				document.cookie = "lon=" + this.state.lon;
 			}
