@@ -100,17 +100,17 @@ class App extends Component {
 
 		if(!this.state.haveLocation) {
 			return (
-				<div id="getLocWrapper" className="wrapper">
+				<div className="container-fluid d-flex flex-column align-items-center">
 					<div id="console"></div>
-					<button onClick={this.getCurrentLocation}>Get Current Location</button>
-					<div style={{margin: "20px"}}>Or</div>
-					<div id="otherLoc">
+					<button className="btn mt-3 bg-shade" onClick={this.getCurrentLocation}>Get Current Location</button>
+					<div className="m-4">Or</div>
+					<div className="container p-3 d-flex flex-column align-items-center bg-shade">
 						<div>Enter a location</div>
-						<div id="inputWrapper">
-							<input placeholder="Latitude" type="number" value={this.state.lat}onChange={event => Math.abs(event.target.value) > 180 ? this.setState({lat: event.target.value/Math.abs(event.target.value)*180}) : this.setState({lat: event.target.value})} onKeyPress={this.handleKeyPress}></input>
-							<input placeholder="Longitude" type="number" value={this.state.lon} onChange={event => Math.abs(event.target.value) > 180 ? this.setState({lon: event.target.value/Math.abs(event.target.value)*180}) : this.setState({lon: event.target.value})} onKeyPress={this.handleKeyPress}></input>
+						<div className="row my-2">
+							<input className="col-12 col-md mx-md-2 px-2 py-1 border-0 bg-shade" placeholder="Latitude" type="number" value={this.state.lat} onChange={event => Math.abs(event.target.value) > 180 ? this.setState({lat: event.target.value/Math.abs(event.target.value)*180}) : this.setState({lat: event.target.value})} onKeyPress={this.handleKeyPress}></input>
+							<input className="col-12 col-md mx-md-2 mt-1 mt-md-0 px-2 py-1 border-0 bg-shade" placeholder="Longitude" type="number" value={this.state.lon} onChange={event => Math.abs(event.target.value) > 180 ? this.setState({lon: event.target.value/Math.abs(event.target.value)*180}) : this.setState({lon: event.target.value})} onKeyPress={this.handleKeyPress}></input>
 						</div>
-						<button onClick={this.getLocation} style={{marginTop: "10px"}}>Submit</button>
+						<button className="btn bg-shade" onClick={this.getLocation}>Submit</button>
 					</div>
 					<DarkSkyLogo/>
 				</div>
