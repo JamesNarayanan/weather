@@ -13,6 +13,8 @@ class App extends Component {
 
 		this.handleDayClick = this.handleDayClick.bind(this);
 		this.handleTempClick = this.handleTempClick.bind(this);
+		this.handleHourlyClick = this.handleHourlyClick.bind(this);
+		this.handleMinutelyClick = this.handleMinutelyClick.bind(this);
 		this.getLocation = this.getLocation.bind(this);
 		this.getCurrentLocation = this.getCurrentLocation.bind(this);
 		this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -40,12 +42,15 @@ class App extends Component {
 		if(unit === "")
 			unit = "im";
 
+		var hourlyType = getCookie("hourlyType");
+		var minutelyType = getCookie("minutelyType");
+
 		if(lat && lon) {
-			this.state = {selectedDay: 0, unit: unit, haveLocation: true, lat: lat, lon: lon};
+			this.state = {selectedDay: 0, unit: unit, haveLocation: true, lat: lat, lon: lon, type: {hourly: hourlyType, minutely: minutelyType}};
 			this.getLocation();
 		}
 		else
-			this.state = {selectedDay: 0, unit: unit, haveLocation: false, lat: '', lon: ''};
+			this.state = {selectedDay: 0, unit: unit, haveLocation: false, lat: '', lon: '', type: {hourly: hourlyType, minutely: minutelyType}};
 	}
 
 	handleDayClick(dayNumber) {
@@ -55,6 +60,15 @@ class App extends Component {
 	handleTempClick(choice) {
 		this.setState({unit: choice === "F" ? "im" : "si"});
 		document.cookie = "unit=" + (choice === "F" ? "im" : "si");
+	}
+
+	handleHourlyClick(choice) {
+		this.setState({type: {hourly: choice, minutely: this.state.type.minutely}});
+		document.cookie = "hourlyType=" + choice;
+	}
+	handleMinutelyClick(choice) {
+		this.setState({type: {hourly: this.state.type.hourly, minutely: choice}});
+		document.cookie = "minutelyType=" + choice;
 	}
 
 	getLocation() {
@@ -119,7 +133,7 @@ class App extends Component {
 		} else if(this.state.days) {
 			return (
 				<div className="container-fluid p-3 d-flex flex-column justify-content-center align-items-center">
-					<Settings onTempClick={this.handleTempClick} unit={this.state.unit}/>
+					<Settings hourlyType={this.state.type.hourly} minutelyType={this.state.type.minutely} onTempClick={this.handleTempClick} onHourlyClick={this.handleHourlyClick} onMinutelyClick={this.handleMinutelyClick} unit={this.state.unit}/>
 
 					<div className="container h-auto mt-4 p-3 d-flex flex-column border border-dark rounded">
 						<div className="display-3 text-center">Weekly</div>
@@ -129,7 +143,7 @@ class App extends Component {
 
 					<div className="container h-auto mt-4 border border-dark rounded">
 						<div className="display-3 text-center">Hourly</div>
-						<Hours hours={this.state.hours} unit={this.state.unit}/>
+						<Hours hours={this.state.hours} unit={this.state.unit} type={this.state.type.hourly}/>
 					</div>
 					<DarkSkyLogo/>
 				</div>
