@@ -7,7 +7,7 @@ class Day extends Component {
 		function getWeekday(UNIX_timestamp){
 			var date = new Date(UNIX_timestamp * 1000);
 			var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-			return days[date.getUTCDay()];
+			return days[date.getDay()];
 		}
 
 		var day = this.props.days[this.props.dayNum];
