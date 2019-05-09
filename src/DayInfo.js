@@ -38,7 +38,7 @@ class DayInfo extends Component {
 		if(this.props.unit === "si") {
 			temp = (temp - 32) * (5/9);
 
-			windSpeed *= 2.237;
+			windSpeed /= 2.237;
 			windSpeedUnit = "m/s"
 
 			precipAccumulation *= 2.54;

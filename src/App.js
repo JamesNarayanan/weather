@@ -136,13 +136,13 @@ class App extends Component {
 					<Settings hourlyType={this.state.type.hourly} minutelyType={this.state.type.minutely} onTempClick={this.handleTempClick} onHourlyClick={this.handleHourlyClick} onMinutelyClick={this.handleMinutelyClick} unit={this.state.unit}/>
 
 					<div className="container h-auto mt-4 p-3 d-flex flex-column border border-dark rounded">
-						<div className="display-3 text-center">Weekly</div>
+						<div className="display-3 text-center mb-1">Weekly</div>
 						<DayInfo day={this.state.days[this.state.selectedDay]} unit={this.state.unit}/>
 						<Schedule days={this.state.days} onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay} unit={this.state.unit}/>
 					</div>
 
 					<div className="container h-auto mt-4 border border-dark rounded">
-						<div className="display-3 text-center">Hourly</div>
+						<div className="display-3 text-center mb-1">Hourly</div>
 						<Hours hours={this.state.hours} unit={this.state.unit} type={this.state.type.hourly}/>
 					</div>
 					<DarkSkyLogo/>
