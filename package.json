@@ -11,6 +11,7 @@
     "popper.js": "^1.15.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-google-charts": "^3.0.13",
     "react-scripts": "^3.0.0",
     "react-skycons": "^0.7.0"
   },
