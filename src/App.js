@@ -14,6 +14,7 @@ class App extends Component {
 		this.handleDayClick = this.handleDayClick.bind(this);
 		this.handleTempClick = this.handleTempClick.bind(this);
 		this.handleHourlyClick = this.handleHourlyClick.bind(this);
+		this.handleHourlyGraphTypeClick = this.handleHourlyGraphTypeClick.bind(this);
 		this.handleMinutelyClick = this.handleMinutelyClick.bind(this);
 		this.getLocation = this.getLocation.bind(this);
 		this.getCurrentLocation = this.getCurrentLocation.bind(this);
@@ -42,15 +43,18 @@ class App extends Component {
 		if(unit === "")
 			unit = "im";
 
-		var hourlyType = getCookie("hourlyType");
-		var minutelyType = getCookie("minutelyType");
+		var hourlyType = getCookie("hourlyType") || "individual";
+		var hourlyGraphType = parseInt(getCookie("hourlyGraphType")) || 0;
+		var minutelyType = getCookie("minutelyType") || "individual";
+
+
 
 		if(lat && lon) {
-			this.state = {selectedDay: 0, unit: unit, haveLocation: true, lat: lat, lon: lon, type: {hourly: hourlyType, minutely: minutelyType}};
+			this.state = {selectedDay: 0, unit: unit, haveLocation: true, lat: lat, lon: lon, type: {hourly: hourlyType, minutely: minutelyType, hourlyGraph: hourlyGraphType}};
 			this.getLocation();
 		}
 		else
-			this.state = {selectedDay: 0, unit: unit, haveLocation: false, lat: '', lon: '', type: {hourly: hourlyType, minutely: minutelyType}};
+			this.state = {selectedDay: 0, unit: unit, haveLocation: false, lat: '', lon: '', type: {hourly: hourlyType, minutely: minutelyType, hourlyGraph: hourlyGraphType}};
 	}
 
 	handleDayClick(dayNumber) {
@@ -63,11 +67,16 @@ class App extends Component {
 	}
 
 	handleHourlyClick(choice) {
-		this.setState({type: {hourly: choice, minutely: this.state.type.minutely}});
+		this.setState({type: {hourly: choice, minutely: this.state.type.minutely, hourlyGraph: this.state.type.hourlyGraph}});
 		document.cookie = "hourlyType=" + choice;
 	}
+	handleHourlyGraphTypeClick(choice) {
+		this.setState({type: {hourly: this.state.type.hourly, minutely: this.state.type.minutely, hourlyGraph: choice}});
+		document.cookie = "hourlyGraphType=" + choice;
+	}
+
 	handleMinutelyClick(choice) {
-		this.setState({type: {hourly: this.state.type.hourly, minutely: choice}});
+		this.setState({type: {hourly: this.state.type.hourly, minutely: choice, hourlyGraph: this.state.type.hourlyGraph}});
 		document.cookie = "minutelyType=" + choice;
 	}
 
@@ -133,7 +142,7 @@ class App extends Component {
 		} else if(this.state.days) {
 			return (
 				<div className="container-fluid p-3 d-flex flex-column justify-content-center align-items-center">
-					<Settings hourlyType={this.state.type.hourly} minutelyType={this.state.type.minutely} onTempClick={this.handleTempClick} onHourlyClick={this.handleHourlyClick} onMinutelyClick={this.handleMinutelyClick} unit={this.state.unit}/>
+					<Settings hourlyType={this.state.type.hourly} hourlyGraphType={this.state.type.hourlyGraph} minutelyType={this.state.type.minutely} onTempClick={this.handleTempClick} onHourlyClick={this.handleHourlyClick} onHourlyGraphTypeClick={this.handleHourlyGraphTypeClick} onMinutelyClick={this.handleMinutelyClick} unit={this.state.unit}/>
 
 					<div className="container h-auto mt-4 p-3 d-flex flex-column border border-dark rounded">
 						<div className="display-3 text-center mb-1">Weekly</div>
@@ -141,9 +150,9 @@ class App extends Component {
 						<Schedule days={this.state.days} onDayClick={this.handleDayClick} selectedDay={this.state.selectedDay} unit={this.state.unit}/>
 					</div>
 
-					<div className="container h-auto mt-4 border border-dark rounded">
+					<div className="container px-3 pb-3 h-auto mt-4 border border-dark rounded">
 						<div className="display-3 text-center mb-1">Hourly</div>
-						<Hours hours={this.state.hours} unit={this.state.unit} type={this.state.type.hourly}/>
+						<Hours hours={this.state.hours} unit={this.state.unit} type={this.state.type.hourly} graphType={this.state.type.hourlyGraph}/>
 					</div>
 					<DarkSkyLogo/>
 				</div>

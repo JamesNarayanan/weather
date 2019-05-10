@@ -11,12 +11,18 @@ class Settings extends Component {
                 <div className="mt-3 text-center">Hourly Forecast</div>
                 <div className="row justify-content-center">
                     <button className="btn col-4 col-sm-6 col-lg-5 col-xl-4 bg-shade" onClick={()=>this.props.onHourlyClick("individual")} style={{border: this.props.hourlyType === "individual" ? "1px solid black" : "none"}}>Individual</button>
-                    <button className="btn col-4 col-sm-5 col-lg-4 col-xl-4 bg-shade" onClick={()=>this.props.onHourlyClick("graph")} style={{border: this.props.hourlyType === "graph" ? "1px solid black" : "none"}}>Graph</button>
+                    <button className="btn col-4 col-sm-5 col-lg-4 bg-shade" onClick={()=>this.props.onHourlyClick("graph")} style={{border: this.props.hourlyType === "graph" ? "1px solid black" : "none"}}>Graph</button>
                 </div>
+                {this.props.hourlyType === "graph" ? 
+                <div className="row justify-content-center">
+                    <button className="btn col bg-shade" onClick={()=>this.props.onHourlyGraphTypeClick(0)} style={{border: this.props.hourlyGraphType === 0 ? "1px solid black" : "none"}}>Temperature</button>
+                    <button className="btn col bg-shade" onClick={()=>this.props.onHourlyGraphTypeClick(1)} style={{border: this.props.hourlyGraphType === 1 ? "1px solid black" : "none"}}>Precipitation Chance</button>
+                </div>
+                : ""}
                 {/* <div className="mt-3 text-center">Minutely Forecast</div>
                 <div className="row justify-content-center mt-2">
                     <button className="btn col-4 col-sm-6 col-lg-5 col-xl-4 bg-shade" onClick={()=>this.props.onMinutelyClick("individual")} style={{border: this.props.minutelyType === "individual" ? "1px solid black" : "none"}}>Individual</button>
-                    <button className="btn col-4 col-sm-5 col-lg-4 col-xl-4 bg-shade" onClick={()=>this.props.onMinutelyClick("graph")} style={{border: this.props.minutelyType === "graph" ? "1px solid black" : "none"}}>Graph</button>
+                    <button className="btn col-4 col-sm-5 col-lg-4 bg-shade" onClick={()=>this.props.onMinutelyClick("graph")} style={{border: this.props.minutelyType === "graph" ? "1px solid black" : "none"}}>Graph</button>
                 </div> */}
             </div>
         );

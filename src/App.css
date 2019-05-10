@@ -27,3 +27,7 @@ button.bg-shade:hover {
 	width: auto;
 	background-color: black;
 }
+
+svg {
+	overflow: visible !important;
+}

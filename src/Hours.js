@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Skycons from 'react-skycons';
+import Chart from 'react-google-charts';
 
 class Hours extends Component {
 	render() {
@@ -58,42 +59,74 @@ class Hours extends Component {
 			}
 
 			return (
-				<div className="mb-3 d-flex flex-row border border-dark" style={{overflow: "scroll"}}>
+				<div className="d-flex flex-row border border-dark" style={{overflow: "scroll"}}>
 					{hours}
 				</div>
 			);
 		}
 		else if(this.props.type === "graph") {
 			let hours = [];
+			let options = ["Temperature", "Precipitation Chance"];
+			let graphType = parseInt(this.props.graphType);
+			hours.push(["Hour", options[graphType], {role: "tooltip", type: "string", p: {html: true}}]);
 
-			let height = 100;
-			let width = 10;
+			let vAxisFormat = "decimal";
+			if(graphType === 1)
+				vAxisFormat = "percent";
+
+			let timeBase;
+
 			for(let i = 0; i<this.props.hours.length; i++) {
-				let temp = this.props.hours[i].apparentTemperature;
-				hours.push(
-					<div className="col m-0 p-0" style={{maxWidth: width, height: height}}>
-						<svg style={{width: width, height: height}}>
-							<circle cx={width/2} cy={height - temp} r={width/2 - .5} style={{fill: "rgba(0,0,0,.2)"}}/>
-						</svg>
+				let hour = this.props.hours[i];
+				if(i === 0)
+					timeBase = hour.time;
+				let hourTime = (hour.time - timeBase) / 3600; // Number of hours since the first data point
+				let hourData = [hourTime];
+				let yValue;
+
+				if(graphType===0) {
+					yValue = hour.apparentTemperature;
+					if(this.props.unit === "si") {
+						yValue = (yValue- 32) * (5/9);
+						yValue = parseFloat(yValue.toFixed(2));
+					}
+				}
+				else if(graphType===1)
+					yValue = parseFloat(hour.precipProbability.toFixed(2));
+
+				hourData.push(yValue);
+
+				let postFix = "°";
+				if(graphType===1)
+					postFix = "%";
+				// Tooltip
+				hourData.push(`
+					<div class="p-2 d-flex flex-column align-items-center text-center" style="font: 12pt Courier">
+					<div class="w-75 mb-2 border-bottom border-dark">${hourTime || "Now"}</div>
+					<div>${graphType === 1 ? yValue*100 : yValue}${postFix}${graphType===1 ? hour.precipType ? ` Chance of ${hour.precipType}` : " Chance of Precipitation" : ""}</div>
 					</div>
-				);
-			};
-			
+				`);
+				hours.push(hourData);
+
+				
+			}
+
 			return (
-				<div className="row p-2 flex-nowrap justify-content-center align-items-center">
-					<div className="d-flex mr-3 flex-column justify-content-between text-right" style={{marginTop: -20, height: height + 15}}>
-						<div>100°</div>
-						<div>0°</div>
-					</div>
-					<div className="d-flex flex-column">
-						<div className="row flex-nowrap border border-dark px-2" style={{height: height}}>
-							{hours}
-						</div>
-						<div className="row justify-content-between">
-							<div>Now</div>
-							<div>48 h</div>
-						</div>
-					</div>
+				<div className="border border-dark rounded bg-shade">
+					<Chart
+						chartType="ScatterChart"
+						loader={<div className="text-center">Loading Chart</div>}
+						data={hours}
+						options={{
+							title: `${options[graphType]} over the next 48 hours`,
+							hAxis: {title: "Hour", gridlines: {color: "black"}},
+							vAxis: {title: options[graphType], format: vAxisFormat, gridlines: {color: "black"}},
+							legend: "none",
+							colors: ["white"],
+							backgroundColor: "transparent",
+							tooltip: {isHtml: true}
+						}}
+						/>
 				</div>
 			);
 		}
