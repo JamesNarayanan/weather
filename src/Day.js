@@ -30,7 +30,7 @@ class Day extends Component {
 		// Also change formatting to be a container with rows and columns
 		return (
 			<div id="dayWrapper" className="m-2 px-0 py-2 d-flex flex-column align-items-center rounded" onClick={()=>this.props.onClick(this.props.dayNum)} style={{backgroundColor: this.props.selectedDay === this.props.dayNum ? "rgba(0,0,0,.2)" : "", width: "100px"}}>
-				<div className="h5 mb-0">{getWeekday(day.time)}</div>
+				<div className="h5 mb-0">{this.props.dayNum===0 ? "Today" : getWeekday(day.time)}</div>
 				<Skycons className="w-100 h-auto my-2" color="white" icon={iconName} autoplay={true}/>
 				<div className="my-0 d-flex h6">
 					<div>{Math.round(high)}°</div> &nbsp;&nbsp; <div className="text-muted">{Math.round(low)}°</div>

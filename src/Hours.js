@@ -74,7 +74,8 @@ class Hours extends Component {
 			if(graphType === 1)
 				vAxisFormat = "percent";
 
-			let timeBase;
+			let timeBase, day, dayNum=0;
+			let daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 			for(let i = 0; i<this.props.hours.length; i++) {
 				let hour = this.props.hours[i];
@@ -96,14 +97,32 @@ class Hours extends Component {
 
 				hourData.push(yValue);
 
-				let postFix = "°";
+				let dataPostFix = "°";
 				if(graphType===1)
-					postFix = "%";
+					dataPostFix = "%";
+
+				let date = new Date(hour.time*1000);
+				let hourAdjustedTime = date.getHours();
+				let timePostFix = "AM";
+				if(i===0) {
+					hourAdjustedTime = "Now";
+					timePostFix = "";
+				}
+				else {
+					if(hourAdjustedTime === 0 && i!==0)
+						day = dayNum++===0 ? " Tomorrow" : (" " + daysOfWeek[date.getDay()]);
+					if(hourAdjustedTime >= 12) {
+						hourAdjustedTime -= 12;
+						timePostFix = "PM"
+					}
+					if(hourAdjustedTime === 0)
+						hourAdjustedTime = 12;
+				}
 				// Tooltip
 				hourData.push(`
 					<div class="p-2 d-flex flex-column align-items-center text-center" style="font: 12pt Courier">
-					<div class="w-75 mb-2 border-bottom border-dark">${hourTime || "Now"}</div>
-					<div>${graphType === 1 ? yValue*100 : yValue}${postFix}${graphType===1 ? hour.precipType ? ` Chance of ${hour.precipType}` : " Chance of Precipitation" : ""}</div>
+					<div class="w-75 mb-2 border-bottom border-dark">${hourAdjustedTime} ${timePostFix}${day || ""}</div>
+					<div>${graphType === 1 ? yValue*100 : yValue}${dataPostFix}${graphType===1 ? hour.precipType ? ` Chance of ${hour.precipType}` : " Chance of Precipitation" : ""}</div>
 					</div>
 				`);
 				hours.push(hourData);
