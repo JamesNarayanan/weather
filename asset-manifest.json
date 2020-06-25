@@ -1,17 +1,25 @@
 {
   "files": {
-    "main.css": "/weather/static/css/main.fc50191d.chunk.css",
-    "main.js": "/weather/static/js/main.dbcc7689.chunk.js",
-    "main.js.map": "/weather/static/js/main.dbcc7689.chunk.js.map",
-    "runtime~main.js": "/weather/static/js/runtime~main.6cff1e35.js",
-    "runtime~main.js.map": "/weather/static/js/runtime~main.6cff1e35.js.map",
-    "static/css/2.0f7a873c.chunk.css": "/weather/static/css/2.0f7a873c.chunk.css",
-    "static/js/2.df5661da.chunk.js": "/weather/static/js/2.df5661da.chunk.js",
-    "static/js/2.df5661da.chunk.js.map": "/weather/static/js/2.df5661da.chunk.js.map",
+    "main.css": "/weather/static/css/main.6f44a734.chunk.css",
+    "main.js": "/weather/static/js/main.a1f1a8df.chunk.js",
+    "main.js.map": "/weather/static/js/main.a1f1a8df.chunk.js.map",
+    "runtime-main.js": "/weather/static/js/runtime-main.d8725fa2.js",
+    "runtime-main.js.map": "/weather/static/js/runtime-main.d8725fa2.js.map",
+    "static/css/2.d805e148.chunk.css": "/weather/static/css/2.d805e148.chunk.css",
+    "static/js/2.696a2497.chunk.js": "/weather/static/js/2.696a2497.chunk.js",
+    "static/js/2.696a2497.chunk.js.map": "/weather/static/js/2.696a2497.chunk.js.map",
     "index.html": "/weather/index.html",
-    "precache-manifest.a9e5ea33853ee40e5ee9a653a14666a6.js": "/weather/precache-manifest.a9e5ea33853ee40e5ee9a653a14666a6.js",
+    "precache-manifest.21e9d04c1b49d6a921942b059637c503.js": "/weather/precache-manifest.21e9d04c1b49d6a921942b059637c503.js",
     "service-worker.js": "/weather/service-worker.js",
-    "static/css/2.0f7a873c.chunk.css.map": "/weather/static/css/2.0f7a873c.chunk.css.map",
-    "static/css/main.fc50191d.chunk.css.map": "/weather/static/css/main.fc50191d.chunk.css.map"
-  }
+    "static/css/2.d805e148.chunk.css.map": "/weather/static/css/2.d805e148.chunk.css.map",
+    "static/css/main.6f44a734.chunk.css.map": "/weather/static/css/main.6f44a734.chunk.css.map",
+    "static/js/2.696a2497.chunk.js.LICENSE.txt": "/weather/static/js/2.696a2497.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d8725fa2.js",
+    "static/css/2.d805e148.chunk.css",
+    "static/js/2.696a2497.chunk.js",
+    "static/css/main.6f44a734.chunk.css",
+    "static/js/main.a1f1a8df.chunk.js"
+  ]
 }
