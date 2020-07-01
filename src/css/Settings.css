@@ -1,0 +1,8 @@
+#settings-container {
+	border: 1px solid white;
+}
+
+#settings-container,
+#settings-container .btn {
+	color: white;
+}

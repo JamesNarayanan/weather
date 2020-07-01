@@ -1,5 +1,10 @@
 body {
-	background-color: rgb(125, 246, 255);
+	background-color: #145c9c;
+}
+
+.container {
+	background-color: #5da3f3;
+	box-shadow: 5px gray;
 }
 
 #console {
@@ -13,10 +18,10 @@ body {
 }
 
 .bg-shade {
-	background-color: rgba(0,0,0,.05);
+	background-color: rgba(0, 0, 0, 0.05);
 }
 button.bg-shade:hover {
-	background: rgba(0, 0, 0, .15);
+	background: rgba(0, 0, 0, 0.15);
 }
 
 #darkSkyLogo {
