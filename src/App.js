@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./css/App.css";
 import Schedule from "./components/Schedule";
 import Hours from "./components/Hours";
+import Minutes from "./components/Minutes";
 import DayInfo from "./components/DayInfo";
 import Weather from "./Weather";
 import Loading from "./components/Loading";
@@ -280,6 +281,12 @@ class App extends Component {
 							type={this.state.type.hourly}
 							graphType={this.state.type.hourlyGraph}
 						/>
+					</div>
+					<div className="container px-3 pb-3 h-auto mt-4 border border-dark rounded">
+						<div className="display-3 text-center mb-1">
+							Minutely
+						</div>
+						<Minutes minutes={this.state.minutes} />
 					</div>
 					<DarkSkyLogo />
 				</div>
