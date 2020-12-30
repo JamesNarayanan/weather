@@ -14,21 +14,14 @@ class Hours extends Component {
 						minWidth: "140px",
 						left: 0,
 						zIndex: 1,
-						backgroundColor: "#5da3f3"
+						backgroundColor: "#75e8ff"
 					}}
 				>
 					<div className="w-75 border-bottom border-dark">Time</div>
 					<div>AM/PM</div>
-					<Skycons
-						style={{width: "80px", height: "40px"}}
-						color="white"
-						icon={"CLOUDY"}
-						autoplay={true}
-					/>
+					<Skycons style={{width: "80px", height: "40px"}} color="white" icon={"CLOUDY"} autoplay={true} />
 					<div>Temp °{this.props.unit === "si" ? "C" : "F"}</div>
-					<div className="w-100 border-top border-dark">
-						Precip Chance
-					</div>
+					<div className="w-100 border-top border-dark">Precip Chance</div>
 					<div className="w-100 border-top border-dark">Humidity</div>
 					<div className="w-100 border-top border-dark">
 						Wind Speed {this.props.unit === "si" ? "m/s" : "m/h"}
@@ -64,41 +57,23 @@ class Hours extends Component {
 				hours.push(
 					<div
 						className={`col px-0 d-flex flex-column align-items-center text-center ${
-							i !== this.props.hours.length - 1
-								? "border-right border-dark"
-								: ""
+							i !== this.props.hours.length - 1 ? "border-right border-dark" : ""
 						}`}
 						style={{minWidth: "65px"}}
 					>
-						<div className="w-75 border-bottom border-dark">
-							{hourTime}
-						</div>
+						<div className="w-75 border-bottom border-dark">{hourTime}</div>
 						<div>{timePostFix}</div>
-						<Skycons
-							style={{width: "80px", height: "40px"}}
-							color="white"
-							icon={icon}
-							autoplay={true}
-						/>
+						<Skycons style={{width: "80px", height: "40px"}} color="white" icon={icon} autoplay={true} />
 						<div>{temp.toFixed(1)}°</div>
-						<div className="w-100 border-top border-dark">
-							{Math.round(hour.precipProbability * 100)}%
-						</div>
-						<div className="w-100 border-top border-dark">
-							{Math.round(hour.humidity * 100)}%
-						</div>
-						<div className="w-100 border-top border-dark">
-							{windSpeed.toFixed(2)}
-						</div>
+						<div className="w-100 border-top border-dark">{Math.round(hour.precipProbability * 100)}%</div>
+						<div className="w-100 border-top border-dark">{Math.round(hour.humidity * 100)}%</div>
+						<div className="w-100 border-top border-dark">{windSpeed.toFixed(2)}</div>
 					</div>
 				);
 			}
 
 			return (
-				<div
-					className="d-flex flex-row border border-dark"
-					style={{overflow: "scroll"}}
-				>
+				<div className="d-flex flex-row border border-dark" style={{overflow: "scroll"}}>
 					{hours}
 				</div>
 			);
@@ -106,11 +81,7 @@ class Hours extends Component {
 			let hours = [];
 			let options = ["Temperature", "Precipitation Chance"];
 			let graphType = parseInt(this.props.graphType);
-			hours.push([
-				"Hour",
-				options[graphType],
-				{role: "tooltip", type: "string", p: {html: true}}
-			]);
+			hours.push(["Hour", options[graphType], {role: "tooltip", type: "string", p: {html: true}}]);
 
 			let vAxisFormat = "decimal";
 			if (graphType === 1) vAxisFormat = "percent";
@@ -118,15 +89,7 @@ class Hours extends Component {
 			let timeBase,
 				day,
 				dayNum = 0;
-			let daysOfWeek = [
-				"Sunday",
-				"Monday",
-				"Tuesday",
-				"Wednesday",
-				"Thursday",
-				"Friday",
-				"Saturday"
-			];
+			let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 			for (let i = 0; i < this.props.hours.length; i++) {
 				let hour = this.props.hours[i];
@@ -141,8 +104,7 @@ class Hours extends Component {
 						yValue = (yValue - 32) * (5 / 9);
 						yValue = parseFloat(yValue.toFixed(2));
 					}
-				} else if (graphType === 1)
-					yValue = parseFloat(hour.precipProbability.toFixed(2));
+				} else if (graphType === 1) yValue = parseFloat(hour.precipProbability.toFixed(2));
 
 				hourData.push(yValue);
 
@@ -157,10 +119,7 @@ class Hours extends Component {
 					timePostFix = "";
 				} else {
 					if (hourAdjustedTime === 0 && i !== 0)
-						day =
-							dayNum++ === 0
-								? " Tomorrow"
-								: " " + daysOfWeek[date.getDay()];
+						day = dayNum++ === 0 ? " Tomorrow" : " " + daysOfWeek[date.getDay()];
 					if (hourAdjustedTime >= 12) {
 						hourAdjustedTime -= 12;
 						timePostFix = "PM";
@@ -170,9 +129,7 @@ class Hours extends Component {
 				// Tooltip
 				hourData.push(`
 					<div class="p-2 d-flex flex-column align-items-center text-center" style="font: 12pt Courier">
-					<div class="w-75 mb-2 border-bottom border-dark">${hourAdjustedTime} ${timePostFix}${
-					day || ""
-				}</div>
+					<div class="w-75 mb-2 border-bottom border-dark">${hourAdjustedTime} ${timePostFix}${day || ""}</div>
 					<div>${graphType === 1 ? yValue * 100 : yValue}${dataPostFix}${
 					graphType === 1
 						? hour.precipType
@@ -189,9 +146,7 @@ class Hours extends Component {
 				<div className="border border-dark rounded bg-shade">
 					<Chart
 						chartType="ScatterChart"
-						loader={
-							<div className="text-center">Loading Chart</div>
-						}
+						loader={<div className="text-center">Loading Chart</div>}
 						data={hours}
 						options={{
 							title: `${options[graphType]} over the next 48 hours`,

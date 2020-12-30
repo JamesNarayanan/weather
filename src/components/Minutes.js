@@ -11,7 +11,7 @@ class Minutes extends Component {
 					minWidth: "140px",
 					left: 0,
 					zIndex: 1,
-					backgroundColor: "#5da3f3"
+					backgroundColor: "#75e8ff"
 				}}
 			>
 				<div className="w-75 border-bottom border-dark">Time</div>
@@ -33,9 +33,7 @@ class Minutes extends Component {
 			minutes.push(
 				<div
 					className={`col px-0 d-flex flex-column align-items-center text-center ${
-						i !== this.props.minutes.length - 1
-							? "border-right border-dark"
-							: ""
+						i !== this.props.minutes.length - 1 ? "border-right border-dark" : ""
 					}`}
 					style={{minWidth: "65px"}}
 				>
@@ -47,10 +45,7 @@ class Minutes extends Component {
 		}
 
 		return (
-			<div
-				className="d-flex flex-row border border-dark"
-				style={{overflow: "scroll"}}
-			>
+			<div className="d-flex flex-row border border-dark" style={{overflow: "scroll"}}>
 				{minutes}
 			</div>
 		);
